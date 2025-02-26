@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { OpenAI } from "./src/ai/openai.js";
-import { Porcupine } from "@picovoice/porcupine-node";
+import { BuiltinKeyword, Porcupine } from "@picovoice/porcupine-node";
 import { textToSpeech } from "./tts.js";
 import { transcribeAudio } from "./transcribe.js";
 import "dotenv/config";
@@ -16,8 +16,8 @@ const audioPath = path.join(__dirname, "audio", "audio-file.wav");
 
 const porcupine = new Porcupine(
   process.env.PORCUPINE_KEY,
-  [process.env.PORCUPINE_TRAINED_FILE],
-  [0.5],
+  [process.env.PORCUPINE_TRAINED_FILE, BuiltinKeyword.GRASSHOPPER],
+  [0.5, 0.5],
 );
 
 const handleUserCommand = function () {
@@ -60,11 +60,19 @@ function startAssistant() {
       audioBuffer = audioBuffer.slice(porcupine.frameLength);
 
       const keywordIndex = porcupine.process(frame);
+
       if (keywordIndex !== -1) {
         // Trigger listening for speech
         console.log("Wake word detected!");
         micStream.stop();
+      }
+      // first keyword is detected
+      if (keywordIndex === 0) {
         handleUserCommand();
+      }
+
+      // second keyword is detected
+      if (keywordIndex === 1) {
       }
     }
   });
