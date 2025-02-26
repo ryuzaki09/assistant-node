@@ -6,9 +6,11 @@ import { OpenAI } from "./src/ai/openai.js";
 import { BuiltinKeyword, Porcupine } from "@picovoice/porcupine-node";
 import { textToSpeech } from "./tts.js";
 import { transcribeAudio } from "./transcribe.js";
+import mqtt from "mqtt";
 import "dotenv/config";
 
 const openai = new OpenAI();
+const mqttClient = mqtt.connect(`mqtt://172.16.170.50:1883`);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
