@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import { OpenAI } from "./src/ai/openai.js";
 import { BuiltinKeyword, Porcupine } from "@picovoice/porcupine-node";
 import { textToSpeech } from "./tts.js";
-import { transcribeAudio } from "./transcribe.js";
+import { speechToText } from "./stt.js";
 import mqtt from "mqtt";
 import "dotenv/config";
 
@@ -34,7 +34,7 @@ const handleUserCommand = function () {
 
   setTimeout(async () => {
     userStream.stop();
-    const transcription = await transcribeAudio(audioPath);
+    const transcription = await speechToText(audioPath);
     const aiResponse = await openai.createChat(transcription);
 
     await textToSpeech(aiResponse);
