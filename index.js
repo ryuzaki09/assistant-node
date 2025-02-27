@@ -18,7 +18,7 @@ const audioPath = path.join(__dirname, "audio", "audio-file.wav");
 
 const porcupine = new Porcupine(
   process.env.PORCUPINE_KEY,
-  [process.env.PORCUPINE_TRAINED_FILE, BuiltinKeyword.GRASSHOPPER],
+  [BuiltinKeyword.ALEXA, BuiltinKeyword.GRASSHOPPER],
   [0.5, 0.5],
 );
 
