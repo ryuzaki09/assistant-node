@@ -6,11 +6,10 @@ import { OpenAI } from "./src/ai/openai.js";
 import { BuiltinKeyword, Porcupine } from "@picovoice/porcupine-node";
 import { textToSpeech } from "./tts.js";
 import { speechToText } from "./stt.js";
-import mqtt from "mqtt";
+import {mqttService} from './src/services/mqtt.js'
 import "dotenv/config";
 
 const openai = new OpenAI();
-const mqttClient = mqtt.connect(`mqtt://172.16.170.50:1883`);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +17,7 @@ const audioPath = path.join(__dirname, "audio", "audio-file.wav");
 
 const porcupine = new Porcupine(
   process.env.PORCUPINE_KEY,
-  [BuiltinKeyword.ALEXA, BuiltinKeyword.GRASSHOPPER],
+  [process.env.PORCUPINE_TRAINED_FILE, BuiltinKeyword.JARVIS],
   [0.5, 0.5],
 );
 
