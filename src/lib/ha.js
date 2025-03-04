@@ -24,11 +24,6 @@ export class HomeAssistant {
   instance = null
   lights = []
 
-  set lights(lights) {
-    console.log('Setting lights: ', lights)
-    this.lights = lights
-  }
-
   findIntent(speechText) {
     let sentenceWords = ''
     console.log('Finding intent for: ', speechText)
