@@ -3,10 +3,12 @@
   "dependencies": {
     "@picovoice/porcupine-node": "3.0.6",
     "dotenv": "16.4.7",
+    "js-yaml": "4.1.0",
     "mqtt": "5.10.4",
     "node-record-lpcm16": "1.0.1",
     "openai": "4.85.4",
     "play-sound": "1.1.6",
-    "prettier": "3.5.3"
+    "prettier": "3.5.3",
+    "ws": "8.18.1"
   }
 }

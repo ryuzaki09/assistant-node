@@ -1,0 +1,14 @@
+intents:
+  - name: Turn on turn off
+    sentences:
+      - Turn on {device}
+      - Can you turn on {device}
+      - Turn off {device}
+      - Can you turn off {device}
+    slot: device
+
+  - name: Play music
+    sentences:
+      - Play {music}
+      - Play {music} music
+    slot: music
