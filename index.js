@@ -84,8 +84,11 @@ function handleUserCommand(options = {useAi: false}) {
 
       await textToSpeech(aiResponse)
     } else {
-      const result = ha.findIntent(transcription)
-      console.log('ha result: ', result)
+      // Home Assistant Websocket Conversation
+      console.log('Transcription: ', transcription)
+      websocket.sendConversation(transcription)
+      // const result = ha.findIntent(transcription)
+      // console.log('ha result: ', result)
     }
 
     startAssistant()

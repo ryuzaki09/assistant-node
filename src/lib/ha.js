@@ -45,7 +45,8 @@ export class HomeAssistant {
     })
 
     if (!intent) {
-      return 'No intent found'
+      console.log('No intent found')
+      return false
     }
 
     console.log('Found intent: ', intent)
@@ -73,6 +74,7 @@ export class HomeAssistant {
     })
 
     console.log('found entity: ', foundEntity)
+    return foundEntity
   }
 }
 

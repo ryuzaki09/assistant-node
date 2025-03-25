@@ -12,3 +12,8 @@ intents:
       - Play {music}
       - Play {music} music
     slot: music
+
+  - name: Set timers
+    sentences:
+      - set timer {query}
+    slot: query
